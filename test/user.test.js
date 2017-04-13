@@ -1,6 +1,5 @@
 var expect = require('chai').expect;
-var mongoose = require('mongoose')
-var app = require('../index');
+
 var User = require('../models/user')
 var dropMongooseDB = require('./drop_mongoose_db.js')
 
@@ -26,8 +25,8 @@ describe('Creating a User', function() {
       password: 'password'
     }, function(err, user) {
       // there should be an error
-      if (err) return done();
-      return done();
+      if (!err) return done(Error)
+      done()
     })
   });
 
@@ -38,8 +37,8 @@ describe('Creating a User', function() {
       password: 'password'
     }, function(err, user) {
       // there should be an error
-      if (err) return done();
-      return done();
+      if (!err) return done(Error) // if no error
+      done() // if there is an error
     })
   });
 
@@ -50,8 +49,8 @@ describe('Creating a User', function() {
       password: 'short'
     }, function(err, user) {
       // there should be an error
-      if (err) return done();
-      return done();
+      if (!err) return done(Error)
+      done()
     })
   });
 
@@ -63,7 +62,7 @@ describe('Creating a User', function() {
     }, function(err, newUser) {
       if (err) return done(err);
       if (newUser && newUser.password === 'password') {
-        done(Error);
+        done(Error); // give and stored password cannot be the same
       } else {
         done();
       }

@@ -9,15 +9,15 @@ before(function (done) {
 })
 
 describe('Auth Controller', function () {
-  describe('GET /auth/signup', function () {
+  describe('GET /register', function () {
     it('should return a 200 response', function (done) {
-      request(app).get('/auth/signup').expect(200, done)
+      request(app).get('/register').expect(200, done)
     })
   })
 
-  describe('POST /auth/signup', function () {
+  describe('POST /register', function () {
     it('should redirect to / on success', function (done) {
-      request(app).post('/auth/signup')
+      request(app).post('/register')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send({
           email: 'new@new.co',
@@ -28,15 +28,15 @@ describe('Auth Controller', function () {
         .expect(302, done)
     })
 
-    it('should redirect to /auth/signup on failure', function (done) {
-      request(app).post('/auth/signup')
+    it('should redirect to /register on failure', function (done) {
+      request(app).post('/register')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send({
           email: 'new',
           name: 'Brian',
           password: 'p'
         })
-        .expect('Location', '/auth/signup')
+        .expect('Location', '/register')
         .expect(302, done)
     })
   })

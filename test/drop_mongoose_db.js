@@ -2,6 +2,9 @@ var mongoose = require('mongoose')
 var sleep = 10
 var connected = false
 
+var mongoose = require('mongoose')
+var app = require('../index');
+
 mongoose.connection.on('open', function () {
   console.log('DB Connected')
   connected = true
